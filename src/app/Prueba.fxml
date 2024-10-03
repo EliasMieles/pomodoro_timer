@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 
 <AnchorPane id="AnchorPane" prefHeight="443.0" prefWidth="656.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="app.PruebaController">
@@ -11,7 +15,21 @@
          <children>
             <Pane id="central_pane" layoutX="146.0" layoutY="80.0" prefHeight="283.0" prefWidth="365.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid; -fx-border-radius: 15px;">
                <children>
-                  <Label id="label_title" layoutX="118.0" layoutY="27.0" prefHeight="51.0" prefWidth="130.0" text="POMODORO TIMER" />
+                  <Label id="label_title" layoutX="118.0" layoutY="27.0" prefHeight="51.0" prefWidth="151.0" style="-fx-font-style: bold;" text="POMODORO TIMER">
+                     <font>
+                        <Font name="NimbusRoman-Regular" size="13.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
                </children>
             </Pane>
          </children>
