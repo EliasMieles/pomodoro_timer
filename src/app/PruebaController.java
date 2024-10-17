@@ -6,11 +6,17 @@ package app;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.Initializable;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.Notifications;
@@ -33,11 +39,9 @@ public class PruebaController implements Initializable {
     Label time_label = new Label();
     int seconds;
     int minutes;
-    
     Timer timer;
-    Notifications notification;
-   
-    
+    Stage stage = new Stage();
+    Notification nt = new Notification();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -45,6 +49,8 @@ public class PruebaController implements Initializable {
         seconds = 0;
         minutes = 0;
         //notification = Notifications.create().title("YA CAYÓ").text("YA PASÓ EL TIEMPO PNDJO").darkStyle().hideAfter(Duration.INDEFINITE);
+        
+        
         
         timer = new Timer(1000, (e) -> {
             
@@ -62,10 +68,13 @@ public class PruebaController implements Initializable {
             if(Integer.parseInt(duration_field.getText()) == minutes){
                 timer.stop();
                 
-                /*Platform.runLater(() -> {
-                    notification.showWarning();
-                });*/
-                
+                Platform.runLater(() -> {
+                    try {
+                        nt.start(stage);
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+            });
             }
             
         });
