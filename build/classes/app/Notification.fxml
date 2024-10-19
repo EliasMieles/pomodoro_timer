@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="193.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23">
+<AnchorPane id="AnchorPane" prefHeight="108.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.NotificationController">
    <children>
-      <Pane layoutY="-3.0" prefHeight="197.0" prefWidth="600.0">
+      <Pane prefHeight="113.0" prefWidth="385.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="152.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Downloads/emojione--wine-glass%20(1).png" />
+                  <Image url="@../img/marketeq--notification-bell.png" />
                </image>
             </ImageView>
+            <Label layoutX="113.0" layoutY="57.0" prefHeight="54.0" prefWidth="273.0" text="WASAAAAAAAAAAAAAAAAAAAAAAAAA" />
+            <Label alignment="CENTER" layoutX="104.0" layoutY="2.0" prefHeight="25.0" prefWidth="246.0" text="PAPU, PAPU, DESPIERTA" />
+            <Button fx:id="btn_cancel" layoutX="346.0" layoutY="1.0" mnemonicParsing="false" onAction="#cancel_window" prefHeight="33.0" prefWidth="37.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/iconamoon--close-fill.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
    </children>

@@ -6,20 +6,13 @@ package app;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.Initializable;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import javax.swing.JOptionPane;
-import org.controlsfx.control.Notifications;
 import javax.swing.Timer;
 
 
@@ -28,7 +21,7 @@ import javax.swing.Timer;
  *
  * @author elias
  */
-public class PruebaController implements Initializable {
+public class PruebaController implements Initializable{
 
     /**
      * Initializes the controller class.
@@ -40,19 +33,21 @@ public class PruebaController implements Initializable {
     int seconds;
     int minutes;
     Timer timer;
-    Stage stage = new Stage();
-    Notification nt = new Notification();
+    NotificationController notification;
+    Stage stage;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         seconds = 0;
         minutes = 0;
-        //notification = Notifications.create().title("YA CAYÓ").text("YA PASÓ EL TIEMPO PNDJO").darkStyle().hideAfter(Duration.INDEFINITE);
+        notification = new NotificationController();
+        stage = new Stage();
         
         
         
-        timer = new Timer(1000, (e) -> {
+        timer = new Timer(100, (e) -> {
             
             Platform.runLater(() -> {
                 time_label.setText(minutes + ":" + seconds);
@@ -70,22 +65,18 @@ public class PruebaController implements Initializable {
                 
                 Platform.runLater(() -> {
                     try {
-                        nt.start(stage);
+                        notification.start();
                     } catch (Exception ex) {
                         System.out.println(ex);
                     }
-            });
-            }
-            
-        });
+                });
+                
+            }    
+        });        
     }
 
     public boolean validate_num(String input) {
         return input.matches("^\\d+$");
-    }
-
-    public void duration_timer() {
-        
     }
 
     public void start_timer() {
