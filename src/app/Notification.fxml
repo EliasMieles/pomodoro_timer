@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,24 +13,27 @@
    <children>
       <Pane prefHeight="113.0" prefWidth="385.0">
          <children>
-            <ImageView fitHeight="152.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="90.0" fitWidth="100.0" layoutX="7.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/marketeq--notification-bell.png" />
+                  <Image url="@../img/emojione-v1--information.png" />
                </image>
             </ImageView>
-            <Label layoutX="113.0" layoutY="57.0" prefHeight="54.0" prefWidth="273.0" text="WASAAAAAAAAAAAAAAAAAAAAAAAAA" />
+            <Label alignment="CENTER" layoutX="116.0" layoutY="34.0" prefHeight="54.0" prefWidth="217.0" text="TIEMPO CUMPLIDOO" />
             <Label alignment="CENTER" layoutX="104.0" layoutY="2.0" prefHeight="25.0" prefWidth="246.0" text="PAPU, PAPU, DESPIERTA" />
             <Button fx:id="btn_cancel" layoutX="346.0" layoutY="1.0" mnemonicParsing="false" onAction="#cancel_window" prefHeight="33.0" prefWidth="37.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/iconamoon--close-fill.png" />
+                        <Image url="@../img/iconoir--cancel.png" />
                      </image>
                   </ImageView>
                </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <effect>
+                  <Blend />
+               </effect>
             </Button>
          </children>
       </Pane>

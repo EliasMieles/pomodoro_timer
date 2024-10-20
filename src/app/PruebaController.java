@@ -34,7 +34,6 @@ public class PruebaController implements Initializable{
     int minutes;
     Timer timer;
     NotificationController notification;
-    Stage stage;
     
     
     @Override
@@ -43,8 +42,6 @@ public class PruebaController implements Initializable{
         seconds = 0;
         minutes = 0;
         notification = new NotificationController();
-        stage = new Stage();
-        
         
         
         timer = new Timer(100, (e) -> {

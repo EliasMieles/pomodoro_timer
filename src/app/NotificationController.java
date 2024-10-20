@@ -5,18 +5,22 @@
 package app;
 
 
+import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
 import javafx.stage.StageStyle;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 
 /**
  *
@@ -25,8 +29,13 @@ import javafx.stage.StageStyle;
 public class NotificationController implements Initializable{
     
     Stage stage = new Stage();
-    @FXML
-    Button btn_cancel = new Button();
+    File audio_file;
+    AudioInputStream audio_stream;
+    Clip clip;
+    String root_aud;
+    
+
+
     
      @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -35,8 +44,10 @@ public class NotificationController implements Initializable{
     
     public void start() throws Exception{
         
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("Notification.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Notification.fxml"));
         Parent root = loader.load();
+        InputStream audioStream = getClass().getResourceAsStream("/img/notification_sound.wav");
+        System.out.println(audioStream);
 
         // Obtener el controlador del archivo FXML y pasarle el Stage actual
         NotificationController controller = loader.getController();
@@ -53,6 +64,8 @@ public class NotificationController implements Initializable{
 
         controller.stage.initStyle(StageStyle.UNDECORATED);
         controller.stage.show();
+        this.load_audio(audioStream.toString());
+        this.start_audio();
     }
 
     // Método para inyectar el stage en el controlador
@@ -63,5 +76,25 @@ public class NotificationController implements Initializable{
     public void cancel_window(){
         stage.close();
     }
-
+    
+    public void load_audio(String root){
+        try {
+            audio_file = new File(root);
+            audio_stream = AudioSystem.getAudioInputStream(audio_file);
+            clip = AudioSystem.getClip();
+            clip.open(audio_stream);
+            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void start_audio(){
+        if(clip != null){
+            clip.setFramePosition(0);
+            clip.start();
+        }else{
+            System.out.println("Clip is null");
+        }
+    }
 }
