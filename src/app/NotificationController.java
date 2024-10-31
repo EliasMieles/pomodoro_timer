@@ -6,6 +6,7 @@ package app;
 
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,10 +30,9 @@ import javax.sound.sampled.Clip;
 public class NotificationController implements Initializable{
     
     Stage stage = new Stage();
-    File audio_file;
-    AudioInputStream audio_stream;
+    InputStream aud;
+    AudioInputStream aud_stream;
     Clip clip;
-    String root_aud;
     
 
 
@@ -46,9 +46,7 @@ public class NotificationController implements Initializable{
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Notification.fxml"));
         Parent root = loader.load();
-        InputStream audioStream = getClass().getResourceAsStream("/img/notification_sound.wav");
-        System.out.println(audioStream);
-
+        
         // Obtener el controlador del archivo FXML y pasarle el Stage actual
         NotificationController controller = loader.getController();
         controller.setStage(new Stage());
@@ -64,7 +62,7 @@ public class NotificationController implements Initializable{
 
         controller.stage.initStyle(StageStyle.UNDECORATED);
         controller.stage.show();
-        this.load_audio(audioStream.toString());
+        this.load_audio();
         this.start_audio();
     }
 
@@ -77,12 +75,12 @@ public class NotificationController implements Initializable{
         stage.close();
     }
     
-    public void load_audio(String root){
+    public void load_audio(){
         try {
-            audio_file = new File(root);
-            audio_stream = AudioSystem.getAudioInputStream(audio_file);
+            aud = getClass().getResourceAsStream("/img/notification_sound.wav");
+            aud_stream = AudioSystem.getAudioInputStream(aud);
             clip = AudioSystem.getClip();
-            clip.open(audio_stream);
+            clip.open(aud_stream);
             
         } catch (Exception ex) {
             System.out.println(ex);
